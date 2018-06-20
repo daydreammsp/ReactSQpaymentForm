@@ -1,15 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
-const mapStateToProps = state => ({
-    
-  view: state.toggleShoppingView,
-  cart: state.orderView,
-  customer: state.customerInfo
-});
-
-
-let total = 0;
 
 let chargeCardWithNonce = (nonce)=> {
   // let product_id = document.getElementById('product_id').value;
@@ -47,7 +37,7 @@ let chargeCardWithNonce = (nonce)=> {
         if (data.status == 200) {
           document.getElementById("successNotification").style.display = "block";
           document.getElementById("payment-form").style.display = "none";
-          // document.getElementById("sq-walletbox").style.display = "none";
+          
           window.scrollTo(0, 0);
         }else if (data.status == 400){
           let error_html = ""
@@ -72,8 +62,8 @@ let chargeCardWithNonce = (nonce)=> {
       }
        cardNonce;
        paymentForm = new window.SqPaymentForm({
-        applicationId: 'sandbox-sq0idp-YldqxOSfurHmr3XsFZ59jg',
-        locationId: 'CBASEGcVZgUKS8RbqdkU-YjiBxggAQ',
+        applicationId: 'application-id',
+        locationId: 'location-id',
         inputClass: 'sq-input',
         autoBuild: true,
         inputStyles: [
@@ -162,7 +152,7 @@ let chargeCardWithNonce = (nonce)=> {
       console.log('total', total);
       document.getElementById('submit').disabled = true;
       this.paymentForm.requestCardNonce();
-      // paymentForm.destroy();
+    
       this.postLocal();
       return false;
     }
@@ -279,4 +269,4 @@ add(a,b){
     
     }
   
-  export default connect(mapStateToProps)(SquareForm);
+  export default (SquareForm);
